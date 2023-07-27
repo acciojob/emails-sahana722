@@ -25,5 +25,21 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
+        if (!this.password.equals(oldPassword)) {
+            return false;
+        }
+
+        // Check if newPassword meets all the conditions
+        if (isValidPassword(newPassword)) {
+            this.password = newPassword;
+            return true;
+        }
+
+        return false;
+
     }
+    private boolean isValidPassword(String password) {
+        // Password must contain at least 8 characters, one uppercase letter, one lowercase letter,
+        // one digit, and one special character.
+        return password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$");
 }
